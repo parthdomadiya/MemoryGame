@@ -20,17 +20,17 @@ class _ChooseChallengesState extends State<ChooseChallenges> {
     SharedPreferences myPrefs = await SharedPreferences.getInstance();
     if(myPrefs.getBool("c1") != null) {
       setState(() {
-        Data.challenge_1 = myPrefs.getBool("c1");
+        Data.challenge_1 = myPrefs.getBool("c1")!;
       });
     }
     if(myPrefs.getBool("c2") != null) {
       setState(() {
-        Data.challenge_2 = myPrefs.getBool("c2");
+        Data.challenge_2 = myPrefs.getBool("c2")!;
       });
     }
     if(myPrefs.getBool("c3") != null) {
       setState(() {
-        Data.challenge_3 = myPrefs.getBool("c3");
+        Data.challenge_3 = myPrefs.getBool("c3")!;
       });
     }
   }

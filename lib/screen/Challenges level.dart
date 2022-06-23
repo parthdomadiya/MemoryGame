@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:memory/data/data.dart';
@@ -5,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: must_be_immutable
 class ChallengesLevel extends StatefulWidget {
-  int challenge = 1;
+  int? challenge = 1;
   ChallengesLevel({this.challenge});
   @override
   _ChallengesLevelState createState() => _ChallengesLevelState();
@@ -18,9 +20,9 @@ class _ChallengesLevelState extends State<ChallengesLevel> {
   bool allow = true;
   bool isLoaded = false;
   bool isLoadedIn = false;
-  int i;
+  int i = 0;
   int ab = 2;
-  int y;
+  int y = 0;
   String q = "";
   String w = "";
   int numberOfTurns = 0;
@@ -28,7 +30,7 @@ class _ChallengesLevelState extends State<ChallengesLevel> {
   List<String> a = [];
   List<String> b = [];
 
-  Timer timer;
+  Timer? timer;
   int gameTime = 0;
 
   @override
@@ -260,7 +262,7 @@ class _ChallengesLevelState extends State<ChallengesLevel> {
                   child: GridView.builder(
                     shrinkWrap: true,
                     physics: BouncingScrollPhysics(),
-                    itemCount: a.length == null ? 0 : a.length,
+                    itemCount: a.length == null || a.length == 0 ? 0 : a.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 4,
                       crossAxisSpacing: 4,
@@ -293,8 +295,8 @@ class _ChallengesLevelState extends State<ChallengesLevel> {
                                 if (ab % 2 != 0) {
                                   Timer(Duration(milliseconds: sec), () {
                                     setState(() {
-                                      i = null;
-                                      y = null;
+                                      i = 0;
+                                      y = 0;
                                       show = true;
                                     });
                                   });
@@ -349,7 +351,7 @@ class _ChallengesLevelState extends State<ChallengesLevel> {
     if (b.length >= a.length) {
       if (widget.challenge == 1) {
         setState(() {
-          timer.cancel();
+          timer!.cancel();
           Data.challenge_1 = true;
           setHighScore();
           showWinDialog("Challenge completed in \n "
@@ -364,7 +366,7 @@ class _ChallengesLevelState extends State<ChallengesLevel> {
         });
       } else if (widget.challenge == 3) {
         setState(() {
-          timer.cancel();
+          timer!.cancel();
           Data.challenge_3 = true;
           setHighScore();
           showWinDialog("Challenge completed in \n "
@@ -392,9 +394,9 @@ class _ChallengesLevelState extends State<ChallengesLevel> {
 
   restart() {
     setState(() {
-      i = null;
+      i = 0;
       ab = 2;
-      y = null;
+      y = 0;
       q = "";
       w = "";
       numberOfTurns = 0;
@@ -405,8 +407,8 @@ class _ChallengesLevelState extends State<ChallengesLevel> {
       b = [];
       first();
       if (gameTime > 0) {
-        if (timer.isActive == true) {
-          timer.cancel();
+        if (timer!.isActive == true) {
+          timer!.cancel();
         }
         gameTime = 0;
       }

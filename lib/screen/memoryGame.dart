@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:memory/data/data.dart';
@@ -15,9 +17,9 @@ class _MemoryState extends State<Memory> {
   bool restartG = false;
   bool isLoaded = false;
   bool isLoadedIn = false;
-  int i;
+  int i = 0;
   int ab = 2;
-  int y;
+  int y = 0;
   String q = "";
   String w = "";
   int numberOfTurns = 0;
@@ -25,7 +27,7 @@ class _MemoryState extends State<Memory> {
   List<String> a = [];
   List<String> b = [];
 
-  Timer timer;
+  Timer? timer;
   int gameTime = 0;
 
   List<String> emoji = ["", "🔥", "😁", "😍", "🥰", "🙃", "😘", "😃", "😂", "😊", "😣"];
@@ -73,23 +75,23 @@ class _MemoryState extends State<Memory> {
     if (open == 0) {
       if (myPrefs.getInt("hp") != null && myPrefs.getInt("tp") != null) {
         setState(() {
-          Data.highScoreInPokemon = myPrefs.getInt("hp");
-          Data.timeInPokemon = myPrefs.getInt("tp");
+          Data.highScoreInPokemon = myPrefs.getInt("hp")!;
+          Data.timeInPokemon = myPrefs.getInt("tp")!;
         });
       }
     } else if (open == 1) {
       if (myPrefs.getInt("he") != null && myPrefs.getInt("te") != null) {
         setState(() {
-          Data.highScoreInEmoji = myPrefs.getInt("he");
-          Data.timeInEmoji = myPrefs.getInt("te");
+          Data.highScoreInEmoji = myPrefs.getInt("he")!;
+          Data.timeInEmoji = myPrefs.getInt("te")!;
         });
         return Data.highScoreInEmoji;
       }
     } else if (open == 2) {
       if (myPrefs.getInt("hn") != null && myPrefs.getInt("tn") != null) {
         setState(() {
-          Data.highScoreInNumber = myPrefs.getInt("hn");
-          Data.timeInNumber = myPrefs.getInt("tn");
+          Data.highScoreInNumber = myPrefs.getInt("hn")!;
+          Data.timeInNumber = myPrefs.getInt("tn")!;
         });
       }
     }
@@ -404,7 +406,7 @@ class _MemoryState extends State<Memory> {
                   child: GridView.builder(
                     shrinkWrap: true,
                     physics: BouncingScrollPhysics(),
-                    itemCount: a.length == null ? 0 : a.length,
+                    itemCount: a.length == null || a.length == 0 ? 0 : a.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: Data.level == 1 || Data.level == 2
                           ? 2
@@ -441,8 +443,8 @@ class _MemoryState extends State<Memory> {
                               if (ab % 2 != 0) {
                                 Timer(Duration(milliseconds: sec), () {
                                   setState(() {
-                                    i = null;
-                                    y = null;
+                                    i = 0;
+                                    y = 0;
                                     show = true;
                                   });
                                 });
@@ -666,25 +668,25 @@ class _MemoryState extends State<Memory> {
               showWinDialog("   New High Score\n"
                   "$numberOfTurns Turns in $gameTime sec");
               setHighScore();
-              timer.cancel();
+              timer!.cancel();
             } else {
               showWinDialog("$numberOfTurns Turns in $gameTime sec");
-              timer.cancel();
+              timer!.cancel();
             }
           } else if (numberOfTurns < Data.highScoreInPokemon) {
             showWinDialog("   New High Score\n"
                 "$numberOfTurns Turns in $gameTime sec");
             setHighScore();
-            timer.cancel();
+            timer!.cancel();
           } else {
             showWinDialog("$numberOfTurns Turns in $gameTime sec");
-            timer.cancel();
+            timer!.cancel();
           }
         } else {
           showWinDialog("   New High Score\n"
               "$numberOfTurns Turns in $gameTime sec");
           setHighScore();
-          timer.cancel();
+          timer!.cancel();
         }
       } else if (open == 1) {
         if (numberOfTurns == Data.highScoreInEmoji) {
@@ -692,27 +694,27 @@ class _MemoryState extends State<Memory> {
             showWinDialog("   New High Score\n"
                 "$numberOfTurns Turns in $gameTime sec");
             setHighScore();
-            timer.cancel();
+            timer!.cancel();
           } else {
             showWinDialog("$numberOfTurns Turns in $gameTime sec");
-            timer.cancel();
+            timer!.cancel();
           }
         } else if (Data.highScoreInEmoji != 0) {
           if (numberOfTurns < Data.highScoreInEmoji) {
             showWinDialog("   New High Score\n"
                 "$numberOfTurns Turns in $gameTime sec");
             setHighScore();
-            timer.cancel();
+            timer!.cancel();
           } else {
             showWinDialog("$numberOfTurns Turns in $gameTime sec");
             setHighScore();
-            timer.cancel();
+            timer!.cancel();
           }
         } else {
           showWinDialog("   New High Score\n"
               "$numberOfTurns Turns in $gameTime sec");
           setHighScore();
-          timer.cancel();
+          timer!.cancel();
         }
       } else if (open == 2) {
         if (Data.highScoreInNumber != 0) {
@@ -721,25 +723,25 @@ class _MemoryState extends State<Memory> {
               showWinDialog("   New High Score\n"
                   "$numberOfTurns Turns in $gameTime sec");
               setHighScore();
-              timer.cancel();
+              timer!.cancel();
             } else {
               showWinDialog("$numberOfTurns Turns in $gameTime sec");
-              timer.cancel();
+              timer!.cancel();
             }
           } else if (numberOfTurns < Data.highScoreInNumber) {
             showWinDialog("   New High Score\n"
                 "$numberOfTurns Turns in $gameTime sec");
             setHighScore();
-            timer.cancel();
+            timer!.cancel();
           } else {
             showWinDialog("$numberOfTurns Turns in $gameTime sec");
-            timer.cancel();
+            timer!.cancel();
           }
         } else {
           showWinDialog("   New High Score\n"
               "$numberOfTurns Turns in $gameTime sec");
           setHighScore();
-          timer.cancel();
+          timer!.cancel();
         }
       }
     } else if (b.length >= a.length) {
@@ -755,9 +757,9 @@ class _MemoryState extends State<Memory> {
   restart() {
     setState(() {
       Data.level = 1;
-      i = null;
+      i = 0;
       ab = 2;
-      y = null;
+      y = 0;
       q = "";
       w = "";
       numberOfTurns = 0;
@@ -767,7 +769,7 @@ class _MemoryState extends State<Memory> {
       b = [];
       first();
       if (gameTime > 0) {
-        timer.cancel();
+        timer!.cancel();
         gameTime = 0;
       }
       gameTime = 0;
@@ -777,9 +779,9 @@ class _MemoryState extends State<Memory> {
 
   nextLevel() {
     setState(() {
-      i = null;
+      i = 0;
       ab = 2;
-      y = null;
+      y = 0;
       q = "";
       w = "";
       a = [];

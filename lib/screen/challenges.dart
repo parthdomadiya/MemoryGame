@@ -16,7 +16,7 @@ class _ChallengesState extends State<Challenges> {
   bool choose = false;
   bool pokeSlide = false;
   int title = 0;
-  Timer timer;
+  Timer? timer;
 
   int poke1 = 3;
   int poke2 = 1;
@@ -36,23 +36,23 @@ class _ChallengesState extends State<Challenges> {
   @override
   void dispose() {
     super.dispose();
-    timer.cancel();
+    timer!.cancel();
   }
 
   getPlayerLevel() async{
     SharedPreferences myPrefs = await SharedPreferences.getInstance();
     if(myPrefs.getInt("pl") != null) {
       setState(() {
-        Data.playerLevel = myPrefs.getInt("pl");
+        Data.playerLevel = myPrefs.getInt("pl")!;
       });
     }
   }
 
   snackBar(String s){
     // ignore: deprecated_member_use
-    _scaffoldKey.currentState.hideCurrentSnackBar();
+    _scaffoldKey.currentState!.hideCurrentSnackBar();
     // ignore: deprecated_member_use
-    _scaffoldKey.currentState.showSnackBar(
+    _scaffoldKey.currentState!.showSnackBar(
         SnackBar(duration: Duration(milliseconds: 2000),backgroundColor: Colors.white,
             padding: EdgeInsets.only(left: 25),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),

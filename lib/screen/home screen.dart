@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   bool change = false;
-  Timer timer;
+  Timer? timer;
 
   bool newGame = false;
   bool level = false;
@@ -94,35 +94,35 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
     if (myPrefs.getInt("hp") != null && myPrefs.getInt("tp") != null) {
       setState(() {
-        Data.highScoreInPokemon = myPrefs.getInt("hp");
-        Data.timeInPokemon = myPrefs.getInt("tp");
+        Data.highScoreInPokemon = myPrefs.getInt("hp")!;
+        Data.timeInPokemon = myPrefs.getInt("tp")!;
       });
     }
 
     if (myPrefs.getInt("he") != null && myPrefs.getInt("te") != null) {
       setState(() {
-        Data.highScoreInEmoji = myPrefs.getInt("he");
-        Data.timeInEmoji = myPrefs.getInt("te");
+        Data.highScoreInEmoji = myPrefs.getInt("he")!;
+        Data.timeInEmoji = myPrefs.getInt("te")!;
       });
     }
 
     if (myPrefs.getInt("hn") != null && myPrefs.getInt("tn") != null) {
       setState(() {
-        Data.highScoreInNumber = myPrefs.getInt("hn");
-        Data.timeInNumber = myPrefs.getInt("tn");
+        Data.highScoreInNumber = myPrefs.getInt("hn")!;
+        Data.timeInNumber = myPrefs.getInt("tn")!;
       });
     }
 
     if (myPrefs.getBool("play") != null) {
       setState(() {
-        Data.neverPlay = myPrefs.getBool("play");
+        Data.neverPlay = myPrefs.getBool("play")!;
       });
     }
   }
 
   snackBar(String s) {
     // ignore: deprecated_member_use
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
+    _scaffoldKey.currentState!.showSnackBar(SnackBar(
         duration: Duration(milliseconds: 2000),
         backgroundColor: Colors.white,
         padding: EdgeInsets.only(left: 25),
@@ -137,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   @override
   void dispose() {
     super.dispose();
-    timer.cancel();
+    timer!.cancel();
   }
 
   @override

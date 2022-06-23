@@ -16,7 +16,7 @@ class _HelpState extends State<Help> {
   }
 
   snackBar(String s) {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
+    _scaffoldKey.currentState!.showSnackBar(SnackBar(
         duration: Duration(milliseconds: 2000),
         backgroundColor: Colors.white,
         padding: EdgeInsets.only(left: 25),
