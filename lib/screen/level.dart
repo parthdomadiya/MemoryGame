@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:memory/data/data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 // ignore: must_be_immutable
 class Levels extends StatefulWidget {
@@ -37,7 +36,19 @@ class _LevelsState extends State<Levels> {
   Timer timer;
   int gameTime = 0;
 
-  List<String> emoji = ["", "🔥", "😁", "😍", "🥰", "🙃", "😘", "😃", "😂", "😊", "😣"];
+  List<String> emoji = [
+    "",
+    "🔥",
+    "😁",
+    "😍",
+    "🥰",
+    "🙃",
+    "😘",
+    "😃",
+    "😂",
+    "😊",
+    "😣"
+  ];
 
   List<String> symbols = ["", "!", "@", "^", "&", "*", "%", "#", "?", ">", "<"];
 
@@ -478,7 +489,10 @@ class _LevelsState extends State<Levels> {
               fit: BoxFit.contain,
               color: Color(0xffDD2A7B).withOpacity(0.85),
             )
-          : Text("?", style: TextStyle(fontSize: widget.level == 1 ? 38 : 30, color: Color(0xffDD2A7B).withOpacity(0.85)));
+          : Text("?",
+              style: TextStyle(
+                  fontSize: widget.level == 1 ? 38 : 30,
+                  color: Color(0xffDD2A7B).withOpacity(0.85)));
     }
   }
 
@@ -510,15 +524,19 @@ class _LevelsState extends State<Levels> {
       },
       child: Container(
         decoration: BoxDecoration(
-            gradient: LinearGradient(begin: Alignment.topRight, end: Alignment.bottomLeft, stops: [
-          0,
-          0.46,
-          1
-        ], colors: [
-          Color(0xffFFCC70),
-          Color(0xffC850C0),
-          Color(0xff4158D0),
-        ])),
+            gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                stops: [
+              0,
+              0.46,
+              1
+            ],
+                colors: [
+              Color(0xffFFCC70),
+              Color(0xffC850C0),
+              Color(0xff4158D0),
+            ])),
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
@@ -532,7 +550,10 @@ class _LevelsState extends State<Levels> {
             ),
             title: Text(
               "Level ${widget.level}",
-              style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.w600),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25,
+                  fontWeight: FontWeight.w600),
             ),
             elevation: 0,
           ),
@@ -547,7 +568,9 @@ class _LevelsState extends State<Levels> {
                           Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: Text(
-                              remainingTime - gameTime != 0 ? "${remainingTime - gameTime} sec left" : "Game Over",
+                              remainingTime - gameTime != 0
+                                  ? "${remainingTime - gameTime} sec left"
+                                  : "Game Over",
                               style: TextStyle(
                                 fontSize: 30,
                                 color: Colors.white,
@@ -612,7 +635,9 @@ class _LevelsState extends State<Levels> {
               ),
               AnimatedPositioned(
                 duration: Duration(milliseconds: 350),
-                top: numberOfTurns >= 1 ? MediaQuery.of(context).size.height * 0.135 : MediaQuery.of(context).size.height * 0.165,
+                top: numberOfTurns >= 1
+                    ? MediaQuery.of(context).size.height * 0.135
+                    : MediaQuery.of(context).size.height * 0.165,
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 child: Padding(
@@ -644,7 +669,9 @@ class _LevelsState extends State<Levels> {
                             if (numberOfTurns == 0) {
                               time();
                             }
-                            if (i != index && !b.contains(a[index]) && show == true) {
+                            if (i != index &&
+                                !b.contains(a[index]) &&
+                                show == true) {
                               setState(() {
                                 numberOfTurns++;
                                 i = index;
@@ -727,7 +754,8 @@ class _LevelsState extends State<Levels> {
                                           ? Center(
                                               child: b.contains(a[index])
                                                   ? Text(
-                                                      symbols[int.parse(a[index])],
+                                                      symbols[
+                                                          int.parse(a[index])],
                                                       style: TextStyle(
                                                         fontSize: 32,
                                                         color: Colors.white,
@@ -1333,7 +1361,9 @@ class _LevelsState extends State<Levels> {
                           height: 50,
                           onPressed: () {
                             levelUp();
-                            if (widget.level == 4 || widget.level == 10 || widget.level == 15) {
+                            if (widget.level == 4 ||
+                                widget.level == 10 ||
+                                widget.level == 15) {
                               if (widget.level == 4 || widget.level == 15) {
                                 getRatingSharing();
                                 Future.delayed(Duration(milliseconds: 200), () {
