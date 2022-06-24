@@ -1,13 +1,6 @@
-# Memory Game: Picture matching & Brain training
+# The NewShop
 
-Made with Flutter
-
-![](images/memory%20game%20image.png)
-
-
-Developer Personal Website:-
-https://studioi.web.app
-
+A new Flutter project.
 
 ## Getting Started
 
